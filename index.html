@@ -1,115 +1,322 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic Engine Exchange</title>
+    <title>Space Engine Discuss</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #0a0e17;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
+        :root {
+            --bg-color: #050a12; /* Deep Space Background */
+            --nav-bg: #03070d;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-teal: #00d2ff;
+            --accent-orange: #f59e0b;
+            --border-color: #1e293b;
+            --card-bg: #0f172a;
+        }
+
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        h1 { color: #3b82f6; font-size: 28px; }
-        .box {
-            background-color: #131c2e;
-            border: 1px solid #3b82f6;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            text-align: left;
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
-        input {
-            padding: 10px;
-            width: 70%;
-            border-radius: 5px;
+
+        /* Navigation Bar */
+        nav {
+            background-color: var(--nav-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-brand svg {
+            width: 28px;
+            height: 28px;
+            color: var(--accent-teal);
+        }
+
+        .nav-brand span {
+            color: var(--accent-teal);
+        }
+
+        .menu-btn {
+            background: none;
             border: none;
-            margin-bottom: 10px;
-        }
-        button {
-            padding: 10px 15px;
-            background-color: #3b82f6;
             color: white;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
+            font-size: 1.5rem;
             cursor: pointer;
         }
-        .login-area { margin-top: 20px; }
+
+        /* Main Content */
+        .container {
+            max-width: 768px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent-teal);
+        }
+
+        .meta-tags {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .tag-category {
+            color: var(--accent-teal);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .tag-type {
+            border: 1px solid var(--accent-orange);
+            color: var(--accent-orange);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 12px;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+            color: #ffffff;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, var(--border-color) 0%, transparent 100%);
+            margin: 40px 0;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .highlight-text {
+            color: white;
+            font-weight: 500;
+        }
+
+        /* AI Section */
+        .ai-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .ai-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .ai-header h3 {
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .ai-input-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .ai-input-group input {
+            flex: 1;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: white;
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        .ai-input-group input:focus {
+            border-color: var(--accent-teal);
+        }
+
+        .ai-input-group button {
+            background-color: var(--accent-teal);
+            color: #000;
+            border: none;
+            padding: 0 24px;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .ai-input-group button:hover {
+            opacity: 0.9;
+        }
+
+        #ai-response {
+            margin-top: 20px;
+            padding: 16px;
+            background-color: rgba(0, 210, 255, 0.1);
+            border-left: 3px solid var(--accent-teal);
+            border-radius: 4px;
+            color: var(--accent-teal);
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.8rem; }
+            .subtitle { font-size: 1.1rem; }
+            .ai-input-group { flex-direction: column; }
+            .ai-input-group button { padding: 14px; }
+        }
     </style>
 </head>
 <body>
 
-    <h1>🚀 Cosmic Engine Exchange</h1>
-    <p>Where rockets and fusion dreams get argued with equations.</p>
+    <!-- Top Navigation -->
+    <nav>
+        <div class="nav-brand">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            SPACE ENGINE <span>DISCUSS</span>
+        </div>
+        <button class="menu-btn">☰</button>
+    </nav>
 
-    <!-- Login Section -->
-    <div id="login-box" class="login-area">
-        <input type="text" id="user" placeholder="Enter Name">
-        <button onclick="login()">Login</button>
-    </div>
+    <!-- Main Content Area -->
+    <div class="container">
+        <a href="#" class="back-link">← Engine index</a>
 
-    <!-- Main App (Hidden initially) -->
-    <div id="main-app" style="display: none;">
+        <div class="meta-tags">
+            <span class="tag-category">Exotic Propulsion</span>
+            <span class="tag-type">CONCEPT</span>
+        </div>
+
+        <h1>Antimatter<br>Propulsion</h1>
+
+        <p class="subtitle">The most energy-dense fuel physics allows: complete conversion of mass to energy.</p>
+
+        <div class="divider"></div>
+
+        <h2>How it works</h2>
+        <p><span class="highlight-text">Matter–antimatter annihilation</span> converts 100% of rest mass into energy (E = mc²), about 9×10¹⁶ J/kg, roughly 10¹⁰ times chemical propellants. Proton–antiproton annihilation yields charged pions that can be steered magnetically.</p>
         
-        <div class="box">
-            <h3>🤖 AI Scientist</h3>
-            <p id="ai-chat" style="color: #10b981;">[AI Officer]: Hello! Ask me about Ion, Warp, or Fusion engines.</p>
-            <input type="text" id="ai-input" placeholder="Ask a question...">
-            <button onclick="askAI()">Send</button>
-        </div>
+        <p>The barrier is production and storage. Global antiproton output is on the order of nanograms per year at enormous cost, and storage requires Penning traps holding tiny quantities.</p>
 
-        <div class="box">
-            <h3>💬 Community Forum</h3>
-            <p id="forum-posts" style="color: #8892b0;">- SpaceGeek: How does an ion thruster work?<br>- RocketMan: It uses electric fields.</p>
-            <input type="text" id="forum-input" placeholder="Post a message...">
-            <button onclick="postForum()">Post</button>
+        <!-- Premium AI Chat Interface -->
+        <div class="ai-section">
+            <div class="ai-header">
+                <span style="font-size: 1.5rem;">🤖</span>
+                <h3>Ask the AI Scientist</h3>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0;">Have a question about Antimatter, Ion drives, or Warp physics? Type below.</p>
+            
+            <div class="ai-input-group">
+                <input type="text" id="ai-input" placeholder="Type your question here...">
+                <button onclick="askAI()">Send</button>
+            </div>
+            
+            <div id="ai-response"></div>
         </div>
-
-        <br>
-        <button onclick="logout()" style="background-color: #ef4444;">Logout</button>
     </div>
 
+    <!-- AI Logic -->
     <script>
-        function login() {
-            var name = document.getElementById("user").value;
-            if(name === "") { alert("Please enter name!"); return; }
-            
-            document.getElementById("login-box").style.display = "none";
-            document.getElementById("main-app").style.display = "block";
-            document.getElementById("ai-chat").innerHTML = "[AI Officer]: Welcome " + name + "! Ask me a question.";
-        }
-
-        function logout() {
-            document.getElementById("login-box").style.display = "block";
-            document.getElementById("main-app").style.display = "none";
-            document.getElementById("user").value = "";
-        }
-
         function askAI() {
-            var input = document.getElementById("ai-input").value.toLowerCase();
-            var chat = document.getElementById("ai-chat");
-            if(input === "") return;
+            var input = document.getElementById('ai-input').value.toLowerCase();
+            var responseBox = document.getElementById('ai-response');
+            
+            if(input.trim() === "") return;
 
-            var reply = "Interesting! According to physics, this requires more energy.";
-            if(input.includes("ion")) reply = "Ion thrusters have high Isp but low thrust. The Child-Langmuir law limits them.";
-            if(input.includes("warp")) reply = "Warp drives need negative energy (exotic matter). Physics allows it, engineering doesn't yet.";
-            if(input.includes("fusion")) reply = "Fusion rockets use plasma for extreme velocity. Up to 10,000 km/s exhaust.";
+            responseBox.style.display = "block";
+            responseBox.innerHTML = "Analyzing quantum parameters...";
+            responseBox.style.color = "var(--text-muted)";
 
-            chat.innerHTML = "[You]: " + input + "<br><br>[AI Officer]: " + reply;
-            document.getElementById("ai-input").value = "";
-        }
+            setTimeout(() => {
+                let answer = "";
+                
+                if(input.includes('antimatter')) {
+                    answer = "Antimatter annihilation yields the highest possible energy density, but current production is limited to nanograms per year. Penning traps are required for storage.";
+                } else if(input.includes('warp') || input.includes('alcubierre')) {
+                    answer = "The Alcubierre metric requires negative energy density (exotic matter). While allowed by general relativity, quantum inequalities forbid bulk accumulation in classical space.";
+                } else if(input.includes('fusion')) {
+                    answer = "Fusion rockets (like D-He3) offer a theoretical exhaust velocity of up to 10,000 km/s. The primary hurdle is maintaining plasma confinement at 600 million Kelvin.";
+                } else if(input.includes('ion')) {
+                    answer = "Ion thrusters have an Isp of 2,500-4,200s. Thrust is limited by the Child-Langmuir law (space charge limit) across the grid gap.";
+                } else {
+                    answer = "According to the Tsiolkovsky rocket equation, Δv is limited by exhaust velocity and mass ratio. Please specify an engine type for detailed physics.";
+                }
 
-        function postForum() {
-            var input = document.getElementById("forum-input").value;
-            var posts = document.getElementById("forum-posts");
-            if(input === "") return;
-
-            posts.innerHTML += "<br>- You: " + input;
-            document.getElementById("forum-input").value = "";
+                responseBox.style.color = "var(--accent-teal)";
+                responseBox.innerHTML = answer;
+            }, 800); // Simulate AI thinking time
         }
     </script>
 </body>
-    </html>
+</html>
